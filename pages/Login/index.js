@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+// Commom
+import React, { useState } from "react";
 import { View, Text, ImageBackground, TextInput, Pressable, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import LoginPageImage from '../../assets/tasks.png';
-import UserAvatar from '../../assets/userAvatar.png';
-import PasswordAvatar from '../../assets/password.jpg'
-import TelaLogin from '../../assets/telaLogin.png';
+// Created:
 import { api } from '../../services/api';
 import styles from './style';
+// Assets
+import UserAvatar from '../../assets/userAvatar.png';
+import PasswordAvatar from '../../assets/password.jpg'
+import LoginPageImage from '../../assets/tasks.png';
+import TelaLogin from '../../assets/telaLogin.png';
 
 function onTextEntry (text){
     alert(text);
 }
 
-export default function Login({ navigation }){
+export default function Login(props){
     const [user, setUser] = useState({
         login: '',
         password: ''
@@ -28,8 +31,9 @@ export default function Login({ navigation }){
             await AsyncStorage.setItem('userAuth', userTokenGuard );
             await AsyncStorage.setItem('userLogged', JSON.stringify( user ) );
 
-            navigation.navigate('Tarefas Ativas');
+            props.navigation.navigate('RestrictArea');
         }catch( error ){
+            // alert(error.message);
             await AsyncStorage.clear();
             setErrorLogin(true);
             // alert('Houve uma falha ao tentar realizar o login'+error.message);
@@ -37,7 +41,7 @@ export default function Login({ navigation }){
     }
 
     return(
-        <ImageBackground source={ TelaLogin } style={ styles.container }>
+        <ImageBackground source={ LoginPageImage } style={ styles.container }>
             <View style={styles.containerForm}>
                 <View style={styles.containerInput}>
                     <Image source={UserAvatar} style={styles.imgInput} />

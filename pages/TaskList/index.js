@@ -1,14 +1,16 @@
+// Commom
 import React, { useState, useEffect } from 'react';
-import { ScrollView, ImageBackground, Pressable, Text, View, Image } from 'react-native';
-import Tasks from '../../assets/tasks.png';
-import TaskListImage from '../../assets/task-list.jpg';
+import { ScrollView, ImageBackground, Text, View, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { StatusBar } from 'expo-status-bar';
+// Created:
+import { api } from '../../services/api';
 import TaskCard from '../../components/TaskCard';
 import styles from './style';
-import { api } from '../../services/api';
+import Tasks from '../../assets/tasks.png';
+import TaskListImage from '../../assets/task-list.jpg';
 
 const getToken = async () => await AsyncStorage.getItem('userAuth');
-
 
 const PageListTasks = ( data ) => (
     <ImageBackground 
@@ -49,9 +51,14 @@ const PageListTasks = ( data ) => (
         <View style={ styles.footerTaskList }>
             <Text style={ styles.footerText }>Usuário Logado: Bruno Brito</Text>
         </View>
+        <StatusBar
+            backgroundColor = "salmon"
+            barStyle = "auto"
+            hidden = {true}
+            padding ={80}
+        />
     </ImageBackground>
 )
-
 
 const PageNotLogged = (token) => (
     <View>
@@ -59,15 +66,10 @@ const PageNotLogged = (token) => (
     </View>
 )
 
-
-
-
 export default function TaskList(){
     const[data,setData] = useState([]);
     const[autorizeLoad, setAutorizeLoad] = useState(false);
     const[token, setToken] = useState('');
-
-    
 
     useEffect(()=>{
         getToken().then(

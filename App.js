@@ -1,18 +1,18 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TaskList from './pages/TaskList';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 import Login from './pages/Login';
-// import { StatusBar } from 'expo-status-bar';
+import RestrictArea from './pages/RestrictArea';
 
-const Tabs = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer >
-      <Tabs.Navigator>
-        <Tabs.Screen name="Login" component = { Login }  />
-        <Tabs.Screen name="Tarefas Ativas" component = { TaskList }  />
-      </Tabs.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator  screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={ Login } />
+        <Stack.Screen name="RestrictArea" component={ RestrictArea } />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
