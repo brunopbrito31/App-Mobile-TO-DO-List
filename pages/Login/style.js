@@ -61,6 +61,12 @@ const styles = StyleSheet.create({
     imgInput:{
         width: '15%',
         height: '100%',
+    },
+    containerSwitch:{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: 'row',
     }
     
 })

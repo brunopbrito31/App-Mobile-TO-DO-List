@@ -69,6 +69,15 @@ const styles = StyleSheet.create({
     faltam:{
         marginBottom: 15,
         color: 'red'
+    },
+    containerLoading:{
+        flex: 1,
+        justifyContent: "center"
+    },
+    horizontal: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 10
     }
 })
 
